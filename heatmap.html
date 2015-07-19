@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .heat-page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .paint-here {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.5;
+            border: 1px solid;
+            z-index: 2;
+            /*opacity: 0.2;*/
+            background-color: #f5f5f5;
+        }
+        .heat {
+            position: absolute;
+            margin:50px 0 0 50px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            opacity: 0.5;
+            z-index: 3;
+        }
+        .red {
+            background: -webkit-radial-gradient(50% 50%,red,red,lightcoral);
+            background: radial-gradient(at 50% 50%,red,red,lightcoral);
+        }
+        .yellow {
+            background: -webkit-radial-gradient(50% 50%,#ffff00,#ffff00,#ffff00);
+            background: -webkit-radial-gradient(50% 50%,#ffff00,#ffff00,#ffff00);
+        }
+    </style>
+</head>
+<body>
+<iframe class="heat-page" src="index.html"></iframe>
+<canvas id="heat-canvas"></canvas>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+    // set height of canvas to the height of content inside iframe
+    $('.heat-page').load(function() {
+        $('heat-canvas').height($(this).contents().height());
+    });
+</script>
+<script>
+    var canva = document.getElementById("heat-canvas");
+    var ctx = canva.getContext("2d");
+
+    // Create gradient
+    var grd = ctx.createRadialGradient(75,50,5,90,60,100);
+    grd.addColorStop(0,"red");
+    grd.addColorStop(1,"white");
+
+    // Fill with gradient
+    ctx.fillStyle = grd;
+    ctx.fillRect(10,10,150,80);
+</script>
+</body>
+</html>
