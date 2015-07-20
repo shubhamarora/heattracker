@@ -10,7 +10,7 @@ $(document).ready(function() {
      * received click).
      *
      * @param event, event object
-     * @returns {number} return x coordinate of click event w.r.t to target element
+     * @returns {number} return x coordinate of clicked location w.r.t to target element
      */
     function getEventX(event) {
         // calculate target element position w.r.t document
@@ -26,7 +26,7 @@ $(document).ready(function() {
      * received click).
      *
      * @param event, event object
-     * @returns {number} return y coordinate of click event w.r.t to target element
+     * @returns {number} return y coordinate of clicked location w.r.t to target element
      */
     function getEventY(event) {
         // calculate target element position w.r.t document
@@ -46,12 +46,10 @@ $(document).ready(function() {
     function getElementSelector(ele) {
         var selector, currentElement = ele;
 
-        /*
-            Iterate the until you reach document root.
-            This loop will also terminate if current element has an id attribute..
-            If condition will be true and the loop will terminated using break statement
-         */
+        // Iterate until you reach document root.
         while (currentElement.length) {
+
+            if(!currentElement[0].localName) break;
 
             // get tag name of current element
             var currentElementTagName = currentElement[0].localName.toLowerCase();
@@ -69,21 +67,16 @@ $(document).ready(function() {
                 }
             }
 
-            // if current element contains an id attribute.
-            // use the id with tag name and exit the while loop
-            if(typeof currentElement.attr('id') != 'undefined') {
-                selector = currentElementTagName+'#'+currentElement.attr('id') + (selector ? ' > ' + selector : '');
-                break;
-            }
-
-            selector = currentElementTagName + (selector ? ' > ' + selector : '');
+            selector = currentElementTagName + (selector ? '> ' + selector : '');
             currentElement = currentElement.parent();
         }
 
         return selector;
     }
 
-    $("body").on("click", function (event) {
+    // Event Capturing
+    var b = document.getElementsByTagName("body");
+    b[0].addEventListener("click", function (event) {
         // get click event X and Y co-ordinates with respect to target element
         var clickEventX = getEventX(event);
         var clickEventY = getEventY(event);
@@ -96,5 +89,6 @@ $(document).ready(function() {
             url:"server/collect.php?x="+clickEventX+"&y="+clickEventY+"&selector="+eleSelector+"&url="+currentUrl,
             type:"GET"
         });
-    });
+    },true);
+
 });
