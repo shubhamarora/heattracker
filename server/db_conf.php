@@ -8,7 +8,7 @@ $dbName = "heatmap";
 $conn = new mysqli($dbHost,$dbUser,$dbPass,$dbName);
 
 if($conn->connect_error) {
-    http_response_code(404);
+    die("Connection Error: ".$conn->connect_error." in ".$conn->connect_errno);
 }
-http_response_code(404);
+
 ?>
