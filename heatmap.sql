@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2015 at 10:13 PM
+-- Generation Time: Jul 21, 2015 at 09:09 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -29,8 +29,9 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `click_location` (
   `x_pos` int(4) NOT NULL,
   `y_pos` int(4) NOT NULL,
-  `ele_selector` varchar(150) NOT NULL,
-  `url` varchar(70) NOT NULL
+  `ele_selector` varchar(200) NOT NULL,
+  `url` varchar(200) NOT NULL,
+  `tracking_code` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
