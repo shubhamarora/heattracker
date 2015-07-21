@@ -24,11 +24,10 @@
     // set height of canvas to the height of content inside iframe
     $('#heat-page').on("load",function() {
         $('#heat-canvas').height($(this).contents().height());
-        console.log("canvas height - " + $(this).contents().height());
 
         var canva = document.getElementById("heat-canvas");
         var ctx = canva.getContext("2d");
-        console.log("jhsdc");
+
         // Create gradient
         var grd = ctx.createRadialGradient(75, 50, 5, 90, 60, 100);
         grd.addColorStop(0, "red");
@@ -40,8 +39,6 @@
         ctx.fillRect(55, 55, 20, 20);
         ctx.fillRect(20, 20, 10, 10);
         ctx.fillRect(25, 25, 10, 10);
-        ctx.fillRect(30, 30, 10, 10);
-        ctx.fillRect(35, 35, 1, 1);
     });
 </script>
 </body>
